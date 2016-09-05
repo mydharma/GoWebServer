@@ -1,4 +1,4 @@
-Package: hello
+Package: gowebserver
 Version: 1.0
 Section: base
 Priority: optional
