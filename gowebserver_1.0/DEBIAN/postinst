@@ -1,5 +1,5 @@
 #! /bin/bash
-touch /etc/init.d/gowebserver
+update-rc.d gowebserver defaults
 if which invoke-rc.d >/dev/null 2>&1; then
 	invoke-rc.d gowebserver start
 else
