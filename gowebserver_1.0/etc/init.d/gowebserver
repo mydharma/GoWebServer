@@ -1,4 +1,11 @@
 #!/bin/sh
 set -e
 
-gowebserver &
+if start-stop-daemon --start --quiet --exec /usr/local/bin/gowebserver
+then
+	echo "=====> gowebserver started successfully"
+else
+	echo "=====> gowebserver failed to start"
+fi
+
+exit 0
