@@ -10,11 +10,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 set -e
 
-if start-stop-daemon --start --quiet --exec /usr/local/bin/gowebserver
+if start-stop-daemon --start --quiet --pidfile /var/run/gowebserver.pid --exec /usr/local/bin/gowebserver
 then
 	echo "=====> gowebserver started successfully"
 else
 	echo "=====> gowebserver failed to start"
+	exit 1
 fi
 
 exit 0
