@@ -1,4 +1,13 @@
 #!/bin/sh
+### BEGIN INIT INFO
+# Provides:             gowebserver
+# Short-Description:    gowebserver test app
+# Description:          gowebserver test app for Spinnaker
+### END INIT INFO
+
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 set -e
 
 if start-stop-daemon --start --quiet --exec /usr/local/bin/gowebserver
