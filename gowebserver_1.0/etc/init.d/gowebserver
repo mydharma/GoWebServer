@@ -1,10 +1,8 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:             gowebserver
-# Required-Start:       $syslog $remote_fs
-# Required-Stop:        $syslog $remote_fs
-# Should-Start:         $local_fs
-# Should-Stop:          $local_fs
+# Required-Start:       $local_fs $remote_fs
+# Required-Stop:        $local_fs $remote_fs
 # Default-Start:        2 3 4 5
 # Default-Stop:         0 1 6
 # Short-Description:    gowebserver
@@ -12,31 +10,24 @@
 ### END INIT INFO
 
 
+. /lib/lsb/init-functions
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/local/bin/gowebserver
 NAME=gowebserver
 DESC=gowebserver
 
-RUNDIR=/var/run/gowebserver
+RUNDIR=/var/run
 PIDFILE=$RUNDIR/gowebserver.pid
 
 test -x $DAEMON || exit 0
 
-if [ -r /etc/default/$NAME ]
-then
-        . /etc/default/$NAME
-fi
-. /lib/lsb/init-functions
-
-set -e
-
 case "$1" in
   start)
-        echo -n "Starting $DESC: "
+        echo -n "=======>>>>> Starting $DESC: "
         mkdir -p $RUNDIR
         touch $PIDFILE
 
-        if start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON
+        if start-stop-daemon --start --oknodo --quiet --make-pidfile --pidfile $PIDFILE --background --exec $DAEMON
         then
                 echo "=======>>>>> GOWEBSERVER started successfully. - $NAME"
         else
