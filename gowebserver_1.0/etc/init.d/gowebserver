@@ -23,7 +23,6 @@ test -x $DAEMON || exit 0
 
 case "$1" in
   start)
-        echo -n "=======>>>>> Starting $DESC: "
         mkdir -p $RUNDIR
         touch $PIDFILE
 
